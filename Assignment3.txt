@@ -1,0 +1,855 @@
+UNIX File System & Permissions
+
+1: Give the execute permission for the user for a file chap1. 
+
+[root@hostname01 ~]# chmod u+x chap1
+
+2: Give execute permission for user, group and others for a file add.c 
+
+[root@hostname01 ~]# chmod a+x add.c
+
+3: Remove the execute permission from user, give read permission to group and others for a file aa.c 
+
+[root@hostname01 ~]# chmod u-x,go+r aa.c
+
+4: Give execute permission for users for a.c, kk.c, nato and myfile using single command. 
+
+[root@hostname01 ~]# chmod u+x a.c kk.c nato myfile
+
+5: Change the directory to root directory. Check the system directories, like bin, etc,  usr etc.
+
+[root@hostname01 ~]# cd /
+[root@hostname01 /]# ls -d bin etc usr
+
+
+Using Pipes and Filters
+
+
+1: Redirect the content of the help document ls, into a file called as lsdoc. 
+
+[root@hostname01 ~]# man ls > lsdoc
+
+2: Display the content of the lsdoc page wise. 
+
+[root@hostname01 ~]# less lsdoc
+
+3: Display only the first 4 lines of the lsdoc file. 
+
+[root@hostname01 ~]# head -n 4 lsdoc
+LS(1)                                                             User Commands                                                             LS(1)
+
+NAME
+       ls - list directory contents
+
+4: Display only the last 7 lines of the file lsdoc. 
+
+[root@hostname01 ~]# tail -n 7 lsdoc
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+
+SEE ALSO
+       Full documentation <https://www.gnu.org/software/coreutils/ls>
+       or available locally via: info '(coreutils) ls invocation'
+
+GNU coreutils 8.32                                                December 2024                                                             LS(1)
+
+5: Remove the file lsdoc. 
+
+[root@hostname01 ~]# rm lsdoc
+rm: remove regular file 'lsdoc'? y
+
+6: There will be B’day celebration from the friends file, find how many B’day parties 
+     will be held.  If two of the friends have the B’date on the same day, then we will be 
+     having one party on that day. 
+
+[root@hostname01 ~]# cut -d' ' -f2 friends | sort | uniq -c
+      1 
+      1 Ajay	567576	01/04/66
+      1 David	8281292	09/09/60
+      1 Jamil	554467	08/09/67
+      1 Madhu	694465	09/07/68
+      1 Mano	7820077	09/07/68
+      1 Navin	2223411	30/05/68
+      1 simmi	7865425	12/12/70
+
+7: Display the lines starting with Ma, in the file friends. 
+
+[root@hostname01 ~]# grep "^Ma" friends
+Madhu	694465	09/07/68
+Mano	7820077	09/07/68
+
+8: Display the lines starting with Ma, ending with i or ending with id, in the file friends.
+
+[root@hostname01 ~]# grep "^Ma.*[i|id]$" friends
+
+9: Print all the files and the directory files from the current directory across all the sub directories, along with its path 
+
+[root@hostname01 ~]# find . -type f
+./.bash_logout
+./.bash_profile
+./.bashrc
+./.cshrc
+./.tcshrc
+./.cache/mesa_shader_cache/index
+./.cache/mesa_shader_cache/b5/85f78032f2b48a8f18776e28be39603d5c5124
+./.cache/mesa_shader_cache/66/e87b90d2ef49af9ff75965465773b7e4c4e34d
+./.cache/mesa_shader_cache/ca/7d6baed32d6a72519782748b787f5faad61192
+./.cache/mesa_shader_cache/ae/4598a711700b783a0f698e674f883c9b236eed
+./.cache/mesa_shader_cache/f4/e2f4d4c2204d91d937996e51bc14a00db824ce
+./.cache/mesa_shader_cache/f4/78fc634390363897dbf689fa53b34af4d84440
+./.cache/mesa_shader_cache/25/302f984eb8bc5ec380929622f64b64d768883c
+./.cache/mesa_shader_cache/ad/570c28b8ae3c401124f4e6a33df774b69a17d3
+./.cache/mesa_shader_cache/23/9df3fcec405a97f593fd5de9b498b4c288c4f9
+./.cache/mesa_shader_cache/6e/525caa61fd6669ec1bdc0ee3d67aa2a4497cf3
+./.cache/mesa_shader_cache/92/5a550149432fc7d96ae702bdd2518ac84cd5b4
+./.cache/mesa_shader_cache/43/807266a6c5710d4a9c1a7bd9172bcba09ba5a8
+./.cache/mesa_shader_cache/95/c8b014bd66673ea5a753956bfef2ff0c975038
+./.cache/mesa_shader_cache/81/43a13ac1067f2d6bcc25c8e506fda25ea9c45d
+./.cache/mesa_shader_cache/4b/01d3d3a29e36a894368b4029000784f33e257b
+./.cache/mesa_shader_cache/cd/317798f0b3c9e5e45654e695f566ba584c0b56
+./.cache/mesa_shader_cache/dd/28f3b5e30c043f2ea8c5aac43c804942ee4249
+./.cache/mesa_shader_cache/dd/1ac89e1002a2186b1dbc3a71c52cc1386a6dc5
+./.cache/mesa_shader_cache/8f/b7ca2c24334096b001858e92969fd6bd96dc89
+./.cache/mesa_shader_cache/46/9b0d6e9480ffdcee9481355c37eb0c5e86ec4d
+./.cache/mesa_shader_cache/0f/4472993a3330811278ec8c94acb14c8d58293c
+./.cache/mesa_shader_cache/0f/40e87d86e82a476ee0a75351592138fa1f8dfd
+./.cache/mesa_shader_cache/af/ccac2da1bd770ab96d905f70380b994636d294
+./.cache/mesa_shader_cache/82/61c7a03a37676fb0483caecb204ad0904ddae3
+./.cache/mesa_shader_cache/01/33ba9b0141f78d299bbab088961c64b4780d95
+./.cache/mesa_shader_cache/c4/fb6771a2bc84eefc71111235fee2b9a1c560d1
+./.cache/mesa_shader_cache/42/839312e5ce7f7ac43de7687bdc51cbdd3100fc
+./.cache/mesa_shader_cache/34/e8255bbb1b85f1d5fddf2f8cdef6bedcc5649f
+./.cache/mesa_shader_cache/fd/cd62ed6bd7bb92b851c259cf33c5b53520d521
+./.cache/mesa_shader_cache/50/3f15416f91107642e47d62b8e61a56c338a516
+./.cache/mesa_shader_cache/f3/372ec0f8baeb25de9c1167144e9fa895876400
+./.cache/mesa_shader_cache/44/ed089527b6efd097208940d466a22a9b1f8d40
+./.cache/mesa_shader_cache/d7/d73310d6123171e63b577b969affbfca6f3d99
+./.cache/mesa_shader_cache/ff/d582b5bbefa32ccdc5f5c7435d3a95272073ce
+./.cache/mesa_shader_cache/d5/e74f1ec181133254eb2d41845b3718d194b270
+./.cache/mesa_shader_cache/b1/efdaf8162440bf98a4c8a8b9c6336e36825180
+./.cache/mesa_shader_cache/21/24713667bcb951a735cfcb1a18f50f6298931b
+./.cache/mesa_shader_cache/49/bc56d06f89d533b6bb7e7cb3efaf5802b03702
+./.cache/mesa_shader_cache/f1/38f785886674986e3ef7149475b13e797b0b75
+./.cache/mesa_shader_cache/f1/e20b1905d670717b4fe85189d6ea1e1a05cc78
+./.cache/mesa_shader_cache/e3/35feb733f9b3443ce3e10dcf66e57c8436b240
+./.cache/mesa_shader_cache/e3/e41a9740f8be81e5fb517090729465fba34e21
+./.cache/mesa_shader_cache/fc/97599660ea75199a56e436f3b29bf817567525
+./.cache/mesa_shader_cache/73/2175e1e78f56eecfec57f85ea7f5bf8a8fedd5
+./.cache/mesa_shader_cache/73/88e1e4ce698fafa8d002c7751610b8e42bab90
+./.cache/mesa_shader_cache/3c/10e6f298025eda2af6878147fe8d1cdef81537
+./.cache/mesa_shader_cache/c7/89ca066c49ef668263c7f17fc842714ee4d91e
+./.cache/mesa_shader_cache/04/d2450145b1d592466f44442d46be124588439e
+./.cache/mesa_shader_cache/3b/cd42242938ed7f52f803852ab24b090e48e15f
+./.cache/mesa_shader_cache/8e/baff6967cd45349cb6212365f1141276d46fb6
+./.cache/mesa_shader_cache/8b/945edca35472ba6c3bf2dd14fe0f138cbea792
+./.cache/mesa_shader_cache/f0/36aedfe9140cd9ebd36bea96f65146efb61e27
+./.cache/mesa_shader_cache/41/e0aef6d54118d6b0b40b7179ff03393fc9b221
+./.cache/mesa_shader_cache/d8/af7ca2a49d92f5d68d62e0920636ab807452ca
+./.cache/mesa_shader_cache/6b/98920132bab2fc9572576a73021a4d33199d8b
+./.cache/mesa_shader_cache/70/63e234fc4fefe6a35ef4963254ea558ddfbf00
+./.cache/mesa_shader_cache/02/4461f736fdabbaef00da92e8341ff92dade566
+./.cache/mesa_shader_cache/2c/aa0009932b74b95c3cb171a5e29f39812733e5
+./.cache/mesa_shader_cache/9f/5729816865fe702d480d42402ba15f78b62b24
+./.cache/mesa_shader_cache/83/364df92e857b1bcd5d068df7317a5078fea1d5
+./.cache/mesa_shader_cache/75/b0bf316a81c69e73787e1f7386e65a71f530fd
+./.cache/mesa_shader_cache/53/7ad72e11e1a141a713c8a4502f0527cf220440
+./.cache/mesa_shader_cache/1c/b251f84d881d339ec2e0571aebdce73e33d7b8
+./.cache/mesa_shader_cache/e0/a0d97313ada3c5bace88baa6faf4f666ca89c8
+./.cache/mesa_shader_cache/4a/b010ff9e455eb794d80143fbd4606bce247f95
+./.cache/mesa_shader_cache/c9/96f18399358ba3c3f3f7d3ad39ba3da5cdd9b9
+./.cache/mesa_shader_cache/39/e6daf33f4cded639a711f326a313f78e078bd1
+./.cache/mesa_shader_cache/bf/4fdf8f75f7e5ee3a6278a32582fd9f79eb3c9e
+./.cache/mesa_shader_cache/9e/ff62e9321cd9a9f8b294cf8f014106be54c564
+./.cache/mesa_shader_cache/65/f4c2667ca737a7ddb9c77a0cc96f659bfb866d
+./.cache/mesa_shader_cache/32/c7865e081040e2f633e52892d66191f60511c4
+./.cache/mesa_shader_cache/9c/dfe50c50422e8b16f47587948ed84e73c6d66c
+./.cache/gstreamer-1.0/registry.x86_64.bin
+./.cache/gnome-software/appstream/components.xmlb
+./.cache/gnome-software/flatpak-system-default/components.xmlb
+./.cache/gnome-software/flatpak-user-user/components.xmlb
+./.cache/gnome-software/odrs/ratings.json
+./.bash_history
+./.config/user-dirs.dirs
+./.config/user-dirs.locale
+./.config/ibus/bus/009f37d84e1d40d1b16d8b7e17653f73-unix-wayland-0
+./.config/dconf/user
+./.config/evolution/sources/system-proxy.source
+./.config/.gsd-keyboard.settings-ported
+./.config/gtk-3.0/bookmarks
+./.config/gnome-initial-setup-done
+./.local/share/gnome-shell/gnome-overrides-migrated
+./.local/share/evolution/addressbook/system/contacts.db
+./.local/share/evolution/tasks/system/tasks.ics
+./.local/share/flatpak/repo/config
+./.local/share/flatpak/.changed
+./.local/share/gnome-settings-daemon/input-sources-converted
+./.local/share/gvfs-metadata/home
+./.local/share/gvfs-metadata/root
+./.local/share/gvfs-metadata/home-76782e74.log
+./.local/share/gvfs-metadata/root-1b38da50.log
+./.local/share/keyrings/login.keyring
+./.local/share/keyrings/user.keystore
+./.lesshst
+./.xauthOaw0H4
+./friends
+./newfriend
+./users
+./Isdoc
+./errorlog.txt
+./.xauthJpkCkn
+./.xauthl1QM0N
+./.xauthwjK3dM
+./.xautht8Ls1x
+./program4.sh
+./program1.sh
+./program5.sh
+./program6.sh
+./program7.sh
+./program8_1.sh
+./program8.sh
+./program9.sh
+./program10.sh
+./program11.sh
+./.viminfo
+./.xauthQ5VrBa
+./student
+./program2.sh
+./program3.sh
+
+10: Print only the Directory files. 
+
+[root@hostname01 ~]# find . -type d
+.
+./.cache
+./.cache/mesa_shader_cache
+./.cache/mesa_shader_cache/b5
+./.cache/mesa_shader_cache/66
+./.cache/mesa_shader_cache/ca
+./.cache/mesa_shader_cache/ae
+./.cache/mesa_shader_cache/f4
+./.cache/mesa_shader_cache/25
+./.cache/mesa_shader_cache/ad
+./.cache/mesa_shader_cache/23
+./.cache/mesa_shader_cache/6e
+./.cache/mesa_shader_cache/92
+./.cache/mesa_shader_cache/43
+./.cache/mesa_shader_cache/95
+./.cache/mesa_shader_cache/81
+./.cache/mesa_shader_cache/4b
+./.cache/mesa_shader_cache/cd
+./.cache/mesa_shader_cache/dd
+./.cache/mesa_shader_cache/8f
+./.cache/mesa_shader_cache/46
+./.cache/mesa_shader_cache/0f
+./.cache/mesa_shader_cache/af
+./.cache/mesa_shader_cache/82
+./.cache/mesa_shader_cache/01
+./.cache/mesa_shader_cache/c4
+./.cache/mesa_shader_cache/42
+./.cache/mesa_shader_cache/34
+./.cache/mesa_shader_cache/fd
+./.cache/mesa_shader_cache/50
+./.cache/mesa_shader_cache/f3
+./.cache/mesa_shader_cache/44
+./.cache/mesa_shader_cache/d7
+./.cache/mesa_shader_cache/ff
+./.cache/mesa_shader_cache/d5
+./.cache/mesa_shader_cache/b1
+./.cache/mesa_shader_cache/21
+./.cache/mesa_shader_cache/49
+./.cache/mesa_shader_cache/f1
+./.cache/mesa_shader_cache/e3
+./.cache/mesa_shader_cache/fc
+./.cache/mesa_shader_cache/73
+./.cache/mesa_shader_cache/3c
+./.cache/mesa_shader_cache/c7
+./.cache/mesa_shader_cache/04
+./.cache/mesa_shader_cache/3b
+./.cache/mesa_shader_cache/8e
+./.cache/mesa_shader_cache/8b
+./.cache/mesa_shader_cache/f0
+./.cache/mesa_shader_cache/41
+./.cache/mesa_shader_cache/d8
+./.cache/mesa_shader_cache/6b
+./.cache/mesa_shader_cache/70
+./.cache/mesa_shader_cache/02
+./.cache/mesa_shader_cache/2c
+./.cache/mesa_shader_cache/9f
+./.cache/mesa_shader_cache/83
+./.cache/mesa_shader_cache/75
+./.cache/mesa_shader_cache/53
+./.cache/mesa_shader_cache/1c
+./.cache/mesa_shader_cache/e0
+./.cache/mesa_shader_cache/4a
+./.cache/mesa_shader_cache/c9
+./.cache/mesa_shader_cache/39
+./.cache/mesa_shader_cache/bf
+./.cache/mesa_shader_cache/9e
+./.cache/mesa_shader_cache/65
+./.cache/mesa_shader_cache/32
+./.cache/mesa_shader_cache/9c
+./.cache/ibus
+./.cache/evolution
+./.cache/evolution/addressbook
+./.cache/evolution/addressbook/trash
+./.cache/evolution/calendar
+./.cache/evolution/calendar/trash
+./.cache/evolution/mail
+./.cache/evolution/mail/trash
+./.cache/evolution/memos
+./.cache/evolution/memos/trash
+./.cache/evolution/sources
+./.cache/evolution/sources/trash
+./.cache/evolution/tasks
+./.cache/evolution/tasks/trash
+./.cache/gstreamer-1.0
+./.cache/gnome-software
+./.cache/gnome-software/appstream
+./.cache/gnome-software/flatpak-system-default
+./.cache/gnome-software/flatpak-user-user
+./.cache/gnome-software/odrs
+./.cache/appstream
+./Desktop
+./Downloads
+./Templates
+./Public
+./Documents
+./Music
+./Pictures
+./Videos
+./.config
+./.config/ibus
+./.config/ibus/bus
+./.config/dconf
+./.config/evolution
+./.config/evolution/sources
+./.config/goa-1.0
+./.config/gtk-3.0
+./.config/gnome-session
+./.config/gnome-session/saved-session
+./.local
+./.local/share
+./.local/share/gnome-shell
+./.local/share/evolution
+./.local/share/evolution/addressbook
+./.local/share/evolution/addressbook/trash
+./.local/share/evolution/addressbook/system
+./.local/share/evolution/addressbook/system/photos
+./.local/share/evolution/calendar
+./.local/share/evolution/calendar/trash
+./.local/share/evolution/calendar/system
+./.local/share/evolution/mail
+./.local/share/evolution/mail/trash
+./.local/share/evolution/memos
+./.local/share/evolution/memos/trash
+./.local/share/evolution/tasks
+./.local/share/evolution/tasks/trash
+./.local/share/evolution/tasks/system
+./.local/share/flatpak
+./.local/share/flatpak/db
+./.local/share/flatpak/repo
+./.local/share/flatpak/repo/tmp
+./.local/share/flatpak/repo/tmp/cache
+./.local/share/flatpak/repo/extensions
+./.local/share/flatpak/repo/state
+./.local/share/flatpak/repo/refs
+./.local/share/flatpak/repo/refs/heads
+./.local/share/flatpak/repo/refs/mirrors
+./.local/share/flatpak/repo/refs/remotes
+./.local/share/flatpak/repo/objects
+./.local/share/applications
+./.local/share/sounds
+./.local/share/pki
+./.local/share/pki/nssdb
+./.local/share/icc
+./.local/share/gnome-settings-daemon
+./.local/share/gvfs-metadata
+./.local/share/keyrings
+./.ssh
+
+11: Display the files starting with chap, along with its path. 
+
+[root@hostname01 ~]# find . -type f -name "chap*"
+
+12: Sort the file friends in ascending order of names. 
+
+[root@hostname01 ~]# sort friends
+
+Ajay	567576	01/04/66
+David	8281292	09/09/60
+Jamil	554467	08/09/67
+Madhu	694465	09/07/68
+Mano	7820077	09/07/68
+Navin	2223411	30/05/68
+simmi	7865425	12/12/70
+
+13: Display the contents of the file friends in uppercase letters. 
+
+[root@hostname01 ~]# cat friends | tr 'a-z' 'A-Z'
+MADHU	694465	09/07/68
+JAMIL	554467	08/09/67
+AJAY	567576	01/04/66
+MANO	7820077	09/07/68
+DAVID	8281292	09/09/60
+SIMMI	7865425	12/12/70
+NAVIN	2223411	30/05/68
+
+14: Store the contents of your home directory in a file called dir. 
+
+[root@hostname01 ~]# ls -l ~ > dir
+
+15: From the above file dir, display the file permissions and the name of the file only. 
+
+[root@hostname01 ~]# awk '{print $1, $9}' dir
+total 
+drwxr-xr-x. Desktop
+-rw-r--r--. dir
+drwxr-xr-x. Documents
+drwxr-xr-x. Downloads
+-rw-r--r--. errorlog.txt
+-rw-r--r--. friends
+-rw-r--r--. Isdoc
+drwxr-xr-x. Music
+-rw-r--r--. newfriend
+drwxr-xr-x. Pictures
+-rwxr-xr-x. program10.sh
+-rwxr-xr-x. program11.sh
+-rwxr-xr-x. program1.sh
+-rwxr-xr-x. program2.sh
+-rwxr-xr-x. program3.sh
+-rwxr-xr-x. program4.sh
+-rwxr-xr-x. program5.sh
+-rwxr-xr-x. program6.sh
+-rwxr-xr-x. program7.sh
+-rwxr-xr-x. program8_1.sh
+-rwxr-xr-x. program8.sh
+-rwxr-xr-x. program9.sh
+drwxr-xr-x. Public
+-rw-r--r--. student
+drwxr-xr-x. Templates
+-rw-r--r--. users
+drwxr-xr-x. Videos
+
+16: From the same dir file, store only the file names in a file called files. 
+
+[root@hostname01 ~]# awk '{print $9}' dir > files
+
+17: From the same dir file, store only the permissions of files in a file called perms.
+
+[root@hostname01 ~]# awk '{print $1}' dir > perms
+
+18: From the same dir file, store only the file sizes in a file called sizes. 
+
+[root@hostname01 ~]# awk '{print $5}' dir > sizes
+
+19: Display the file names, sizes and permissions from your directory in that order. 
+
+[root@hostname01 ~]# awk '{print $9, $5, $1}' dir
+  total
+Desktop 6 drwxr-xr-x.
+dir 0 -rw-r--r--.
+Documents 6 drwxr-xr-x.
+Downloads 6 drwxr-xr-x.
+errorlog.txt 41 -rw-r--r--.
+friends 157 -rw-r--r--.
+Isdoc 8310 -rw-r--r--.
+Music 6 drwxr-xr-x.
+newfriend 157 -rw-r--r--.
+Pictures 6 drwxr-xr-x.
+program10.sh 294 -rwxr-xr-x.
+program11.sh 1073 -rwxr-xr-x.
+program1.sh 100 -rwxr-xr-x.
+program2.sh 164 -rwxr-xr-x.
+program3.sh 178 -rwxr-xr-x.
+program4.sh 154 -rwxr-xr-x.
+program5.sh 195 -rwxr-xr-x.
+program6.sh 284 -rwxr-xr-x.
+program7.sh 428 -rwxr-xr-x.
+program8_1.sh 695 -rwxr-xr-x.
+program8.sh 397 -rwxr-xr-x.
+program9.sh 503 -rwxr-xr-x.
+Public 6 drwxr-xr-x.
+student 20 -rw-r--r--.
+Templates 6 drwxr-xr-x.
+users 257 -rw-r--r--.
+Videos 6 drwxr-xr-x.
+
+20: Display the number of users working on the system. 
+
+[root@hostname01 ~]# who | wc -l
+2
+
+21: Find out the smallest file in your directory. 
+
+[root@hostname01 ~]# ls -lS | tail -n 1
+drwxr-xr-x. 2 root root    6 Aug 25  2022 Videos
+
+22: Display the total number of lines present in the file friends. 
+
+[root@hostname01 ~]# wc -l friends
+8 friends
+
+23: Create the following fixed record format files (with “|” delimiter between fields) with the structure given below, and populate them with relevant data use these files to solve following questions 
+          emp.lst: Empid(4),Name(18),Designation(9),Dept(10),Date of Birth(8),Salary(5) 
+          dept.lst: Dept.Code (2), Name (10), Head of Dept’s id(4) 
+          desig.lst: Designation Abbr.(2), Name (9) 
+
+[root@hostname01 ~]# echo "1001|Cristiano Ronaldo         |Software Engineer|IT        |15-03-1985|50000" > emp.lst
+echo "1002|Lionel Messi       |Manager         |HR        |22-08-1980|75000" >> emp.lst
+echo "1003|Wayne Rooney   |Developer       |IT        |11-12-1990|60000" >> emp.lst
+echo "1004|Gareth Bale        |HR Specialist   |HR        |07-04-1987|55000" >> emp.lst
+echo "1005|Luis Suarez    |Software Engineer|IT       |01-01-1995|48000" >> emp.lst
+echo "1006|Lamine Yamal        |Manager         |Sales     |14-02-1982|72000" >> emp.lst
+[root@hostname01 ~]# echo "IT  |Information Tech|1001" > dept.lst
+echo "HR  |Human Resources |1002" >> dept.lst
+echo "Sales|Sales Dept     |1006" >> dept.lst
+[root@hostname01 ~]# echo "SE|Software Engineer" > desig.lst
+echo "M |Manager" >> desig.lst
+echo "D |Developer" >> desig.lst
+echo "HS|HR Specialist" >> desig.lst
+
+
+1.   Find the record lengths of each file. 
+
+[root@hostname01 ~]# wc -c emp.lst dept.lst desig.lst
+421 emp.lst
+ 81 dept.lst
+ 62 desig.lst
+564 total
+
+2.   Display only the date of birth and salary of the last employee record. 
+
+[root@hostname01 ~]# tail -n 1 emp.lst | cut -d'|' -f5,6
+14-02-1982|72000
+
+3.   Extract   only   employee   names   and   designations.   (Use   column   specifications). Save output as cfile1. 
+			
+[root@hostname01 ~]# cut -d'|' -f2,3 emp.lst > cfile1
+
+4.   Extract Emp.id, dept, dob and salary. (Use field specifications). Save output as cfile2. 
+
+[root@hostname01 ~]# cut -d'|' -f1,4,5,6 emp.lst > cfile2
+
+5.   Fix the files cfile1 and cfile2 laterally, along with the delimiter. 
+
+[root@hostname01 ~]# paste -d'|' cfile1 cfile2 > fixed_file
+
+6.   Sort the emp.lst file in reverse order of Emp. Names. 
+
+[root@hostname01 ~]# sort -t'|' -k2,2r emp.lst
+1003|Wayne Rooney   |Developer       |IT        |11-12-1990|60000
+1005|Luis Suarez    |Software Engineer|IT       |01-01-1995|48000
+1002|Lionel Messi       |Manager         |HR        |22-08-1980|75000
+1006|Lamine Yamal        |Manager         |Sales     |14-02-1982|72000
+1004|Gareth Bale        |HR Specialist   |HR        |07-04-1987|55000
+1001|Cristiano Ronaldo         |Software Engineer|IT        |15-03-1985|50000
+
+7.   Sort the emp.lst file on the salary field, and store the result in file srtf. 
+
+[root@hostname01 ~]# sort -t'|' -k6,6n emp.lst > srtf
+
+8.   Sort the emp.ls t file on designation followed by name. 
+
+[root@hostname01 ~]# sort -t'|' -k3,3 -k2,2 emp.lst
+1003|Wayne Rooney   |Developer       |IT        |11-12-1990|60000
+1004|Gareth Bale        |HR Specialist   |HR        |07-04-1987|55000
+1006|Lamine Yamal        |Manager         |Sales     |14-02-1982|72000
+1002|Lionel Messi       |Manager         |HR        |22-08-1980|75000
+1001|Cristiano Ronaldo         |Software Engineer|IT        |15-03-1985|50000
+1005|Luis Suarez    |Software Engineer|IT       |01-01-1995|48000
+
+9.   Sort the emp.lst file on the year of birth. 
+
+[root@hostname01 ~]# sort -t'|' -k5,5n emp.lst
+1005|Luis Suarez    |Software Engineer|IT       |01-01-1995|48000
+1004|Gareth Bale        |HR Specialist   |HR        |07-04-1987|55000
+1003|Wayne Rooney   |Developer       |IT        |11-12-1990|60000
+1006|Lamine Yamal        |Manager         |Sales     |14-02-1982|72000
+1001|Cristiano Ronaldo         |Software Engineer|IT        |15-03-1985|50000
+1002|Lionel Messi       |Manager         |HR        |22-08-1980|75000
+
+10. Find   out   the   various   designations   in   the   employee   file.   Eliminate   duplicate listing of designations. 
+
+[root@hostname01 ~]# cut -d'|' -f3 emp.lst | sort | uniq
+Developer       
+HR Specialist   
+Manager         
+Software Engineer
+
+11. Find the non-repeated designation in the employee file. 
+
+[root@hostname01 ~]# cut -d'|' -f3 emp.lst | sort | uniq -u
+Developer       
+HR Specialist  
+
+12. Find the number of employees with various designations in the employee file. 
+
+[root@hostname01 ~]# cut -d'|' -f3 emp.lst | sort | uniq -c
+      1 Developer       
+      1 HR Specialist   
+      2 Manager         
+      2 Software Engineer
+	  
+13. Create   a   listing   of   the   years   in   which   employees   were   born   in,   along   with  number of employees born in that year. 
+
+[root@hostname01 ~]# cut -d'|' -f5 emp.lst | cut -c7-10 | sort | uniq -c
+      1 1980
+      1 1982
+      1 1985
+      1 1987
+      1 1990
+      1 1995
+
+14. Use nl command to create a code table for designations to include designation code (Start with dept. code 100, and subsequently 105, 110 …). 
+
+[root@hostname01 ~]# nl -w2 -s' ' <(cut -d'|' -f3 emp.lst) | awk '{print "100+"$1*5, $2}'
+100+5 Software
+100+10 Manager
+100+15 Developer
+100+20 HR
+100+25 Software
+100+30 Manager
+
+24: PCS has its offices at Pune, TTC and Mumbai. The employees’ data is stored 
+      separately for each office. Create appropriate files (with same record structure as 
+      in previous assignment) and populate with relevant data. 
+
+[root@hostname01 ~]# echo "2001|Manu Sharma      |Software Engineer|HR        |15-03-1985|60000" > pune.lst
+echo "2002|Anil Kumar       |Manager          |IT        |10-11-1980|80000" >> pune.lst
+echo "2003|Rajesh Patel     |Developer        |HR        |01-01-1990|45000" >> pune.lst
+echo "2004|Priya Gupta      |Manager          |Admin     |05-07-1983|85000" >> pune.lst
+echo "2005|Ravi Sharma      |Software Engineer|IT        |22-04-1995|55000" >> pune.lst
+[root@hostname01 ~]# echo "3001|Seema Sharma     |Manager          |HR        |16-02-1982|70000" > ttc.lst
+echo "3002|Suresh Gupta     |Developer        |IT        |30-03-1992|48000" >> ttc.lst
+echo "3003|Vinod Kumar      |Software Engineer|Admin     |11-08-1994|50000" >> ttc.lst
+echo "3004|Sanjay Mehta     |Manager          |IT        |17-05-1980|90000" >> ttc.lst
+echo "3005|Neelam Rani      |Software Engineer|HR        |25-06-1993|60000" >> ttc.lst
+[root@hostname01 ~]# echo "4001|Manu Sharma      |Software Engineer|HR        |15-03-1985|60000" > mumbai.lst
+echo "4002|Deepak Verma     |Manager          |IT        |22-04-1981|70000" >> mumbai.lst
+echo "4003|Meenal Agarwal   |Developer        |Sales     |30-09-1988|47000" >> mumbai.lst
+echo "4004|Amit Singh       |Software Engineer|Admin     |14-12-1991|52000" >> mumbai.lst
+echo "4005|Nisha Patel      |Software Engineer|HR        |05-11-1994|55000" >> mumbai.lst
+
+1.  List details about an employee ‘Manu Sharma’ in the Mumbai office. 
+
+[root@hostname01 ~]# grep "Manu Sharma" mumbai.lst
+
+2.   List only the Emp.Id. And Dept. of Manu Sharma. 
+
+[root@hostname01 ~]# grep "Manu Sharma" mumbai.lst | awk '{print $1, $3}'
+
+3.  List details of all managers in all offices. (O/P should not contain file names.). 
+
+[root@hostname01 ~]# grep "Manager" pune.lst ttc.lst mumbai.lst
+
+4.   Find the number of S.E. in each office. 
+
+[root@hostname01 ~]# echo "Pune: $(grep -c "Software Engineer" pune.lst)"
+echo "Mumbai: $(grep -c "Software Engineer" mumbai.lst)"
+echo "TTC: $(grep -c "Software Engineer" ttc.lst)"
+
+5.  List only the Line Numbers and Employee names of employees in ‘H/W’ in Pune file.
+
+[root@hostname01 ~]# grep -n "H/W" pune.lst | awk -F: '{print $1, $2}'
+
+6.   Obtain a listing of all employees other than those in ‘HR’ in the Mumbai file and save contents in a file ‘nonhr’. 
+
+[root@hostname01 ~]# grep -v "HR" mumbai.lst > nonhr.lst
+
+7.   Find the name and designation of the youngest person who is not a manager. 
+
+[root@hostname01 ~]# grep -v "Manager" pune.lst ttc.lst mumbai.lst | sort -t ' ' -k6 | head -n 1 | awk '{print $2, $4}'
+
+8.   Display only  the  filename(s) in which  details of  employee by the name ‘Seema Sharma’ can be found. 
+
+[root@hostname01 ~]# grep -l "Seema Sharma" *.lst
+
+9.   Locate the lines containing saxena and saksena in the Mumbai office. 
+
+[root@hostname01 ~]# grep -i "saxena\|saksena" mumbai.lst
+
+10. Find the number of managers who earn between 50000 and 99999 in the Pune office. 
+
+[root@hostname01 ~]# grep "Manager" pune.lst | awk '$5 >= 50000 && $5 <= 99999' | wc -l
+
+11. List   names   of   employees   whose   id   is   in   the   range   2000   –   2999:   in   Pune Office; in all offices. 
+
+[root@hostname01 ~]# grep "^[2][0-9][0-9][0-9]" pune.lst ttc.lst mumbai.lst | awk '{print $2}'
+
+12. Locate people having same month of birth as current month in Pune office. 
+
+[root@hostname01 ~]# current_month=$(date +%m)
+[root@hostname01 ~]# grep -E "^.*[[:space:]]([0-9]{4}-)($current_month)" pune.lst
+
+13. List details of all employees other than those of HR and Admin in file F1. 
+
+[root@hostname01 ~]# grep -v "HR\|Admin" F1.lst
+
+14. Locate for all Dwivedi, Trivedi, Chaturvedi in Pune file. 
+
+[root@hostname01 ~]# grep -i "Dwivedi\|Trivedi\|Chaturvedi" pune.lst
+
+15. Obtain a list of people in HR, Admin and Recr. depts. sorted in reverse order of the dept.
+
+[root@hostname01 ~]# grep -E "HR|Admin|Recr." *.lst | sort -t ' ' -k3,3r
+
+
+25: Write   a   command   sequence   that   prints   out   date   information   in   this   order: time, 
+         day of week, day number, month, year : 
+               13:44:42 IST Sun 16 Sept 1994 
+
+[root@hostname01 ~]# date "+%T %a %d %b %Y"
+11:57:59 Sat 01 Feb 2025
+
+26:  Write   a   command   sequence   that   prints   the   names   of   the   files   in   the   current 
+         directory in     the descending order of number of links. 
+
+[root@hostname01 ~]# ls -l | sort -k2 -n -r | awk '{print $9}'
+
+Videos
+Templates
+Public
+Pictures
+Music
+Downloads
+Documents
+Desktop
+program8_1.sh
+program9.sh
+program7.sh
+program8.sh
+program10.sh
+program6.sh
+program5.sh
+program3.sh
+program2.sh
+program4.sh
+program11.sh
+program1.sh
+sizes
+Isdoc
+dept.lst
+desig.lst
+srtf
+fixed_file
+emp.lst
+errorlog.txt
+F1
+mumbai.lst
+ttc.lst
+pune.lst
+perms
+files
+users
+cfile1
+student
+nonhr
+cfile2
+newfriend
+friends
+dir
+
+27:  Write   a   command   sequence   that   prints    only   names   of   files   in   current   working 
+         directory in alphabetical order. 
+
+[root@hostname01 ~]# ls -1 | sort
+cfile1
+cfile2
+dept.lst
+desig.lst
+Desktop
+dir
+Documents
+Downloads
+emp.lst
+errorlog.txt
+F1
+files
+fixed_file
+friends
+Isdoc
+mumbai.lst
+Music
+newfriend
+nonhr
+perms
+Pictures
+program10.sh
+program11.sh
+program1.sh
+program2.sh
+program3.sh
+program4.sh
+program5.sh
+program6.sh
+program7.sh
+program8_1.sh
+program8.sh
+program9.sh
+Public
+pune.lst
+sizes
+srtf
+student
+Templates
+ttc.lst
+users
+Videos
+
+28: Write   a   command   sequence   to   print   names   and   sizes   of   all   the   files   in   current 
+         working directory in order of size. 
+
+[root@hostname01 ~]# ls -lS | awk '{print $9, $5}'
+ 
+Isdoc 8310
+dir 1413
+program11.sh 1073
+program8_1.sh 695
+program9.sh 503
+program7.sh 428
+emp.lst 421
+fixed_file 421
+srtf 421
+F1 414
+program8.sh 397
+mumbai.lst 345
+pune.lst 345
+ttc.lst 345
+perms 330
+program10.sh 294
+program6.sh 284
+files 271
+users 257
+cfile1 224
+nonhr 207
+cfile2 197
+program5.sh 195
+program3.sh 178
+program2.sh 164
+friends 157
+newfriend 157
+program4.sh 154
+program1.sh 100
+sizes 91
+dept.lst 81
+desig.lst 62
+errorlog.txt 41
+student 20
+Desktop 6
+Documents 6
+Downloads 6
+Music 6
+Pictures 6
+Public 6
+Templates 6
+Videos 6
+
+29: Determine the latest file updated by the user.
+
+[root@hostname01 ~]# ls -lt | awk 'NR==2 {print $9}'
+F1
+
+
+
+
+
+
